@@ -1,6 +1,17 @@
 import * as React from "react";
-import { SOCIAL_LINKS } from "@/lib/constants";
 import { SocialButton } from "@/components/social-button";
+import { ProjectCards } from "@/components/project-cards";
+
+export const SOCIAL_LINKS = [
+  {
+    href: "http://www.github.com/jackquinlan",
+    text: "GitHub",
+  },
+  {
+    href: "http://www.x.com/abinaryorbit",
+    text: "X",
+  },
+];
 
 export default function Home() {
   return (
@@ -18,6 +29,7 @@ export default function Home() {
           ))}
         </div>
         <h2 className="text-xl font-normal mb-4">projects</h2>
+        <ProjectCards />
       </div>
     </main>
   );

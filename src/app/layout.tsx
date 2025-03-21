@@ -18,7 +18,9 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${GeistMono.variable}`}>{children}</body>
+      <body className={`${GeistMono.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
