@@ -29,7 +29,7 @@ const PROJECTS: ProjectCardProps[] = [
   {
     title: "Fintrack",
     summary:
-      "A chess engine in Python with AI opponents and multiplayer support.",
+      "A personal finance tracker with budgeting, spending analysis, and more.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.",
     icon: <WalletCards className="text-black fill-black" size={20} />,
