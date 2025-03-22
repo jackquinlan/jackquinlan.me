@@ -6,7 +6,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { cn } from "@/lib/utils";
 
 export const CanvasRevealEffect = ({
-  animationSpeed = .5,
+  animationSpeed = 0.5,
   opacities = [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
   colors = [[0, 255, 255]],
   containerClassName,
@@ -21,14 +21,12 @@ export const CanvasRevealEffect = ({
   showGradient?: boolean;
 }) => {
   return (
-    <div className={cn("h-full relative bg-white w-full", containerClassName)}>
+    <div className={cn("relative bg-white w-full h-full", containerClassName)}>
       <div className="h-full w-full">
         <DotMatrix
           dotSize={dotSize}
-          opacities={
-            opacities
-          }
-          colors={colors} 
+          opacities={opacities}
+          colors={colors}
           shader={`
               float animation_speed_factor = ${animationSpeed.toFixed(1)};
               float intro_offset = distance(u_resolution / 2.0 / u_total_size, st2) * 0.01 + (random(st2) * 0.15);
@@ -227,7 +225,7 @@ const ShaderMaterial = ({
         case "uniform3fv":
           preparedUniforms[uniformName] = {
             value: uniform.value.map((v: number[]) =>
-              new THREE.Vector3().fromArray(v)
+              new THREE.Vector3().fromArray(v),
             ),
             type: "3fv",
           };
