@@ -5,7 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import "@/globals.css";
 
 export const metadata: Metadata = {
-  title: "Jack Quinlan",
+  title: "jackquinlan",
 };
 
 export default function RootLayout({
