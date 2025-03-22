@@ -6,17 +6,13 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { cn } from "@/lib/utils";
 
 export const CanvasRevealEffect = ({
-  animationSpeed = 0.4,
+  animationSpeed = .5,
   opacities = [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
   colors = [[0, 255, 255]],
   containerClassName,
-  dotSize,
-  showGradient = true,
+  dotSize = 3.25,
+  showGradient = false,
 }: {
-  /**
-   * 0.1 - slower
-   * 1.0 - faster
-   */
   animationSpeed?: number;
   opacities?: number[];
   colors?: number[][];
@@ -28,11 +24,11 @@ export const CanvasRevealEffect = ({
     <div className={cn("h-full relative bg-white w-full", containerClassName)}>
       <div className="h-full w-full">
         <DotMatrix
-          colors={colors ?? [[0, 255, 255]]}
-          dotSize={dotSize ?? 3}
+          dotSize={dotSize}
           opacities={
-            opacities ?? [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1]
+            opacities
           }
+          colors={colors} 
           shader={`
               float animation_speed_factor = ${animationSpeed.toFixed(1)};
               float intro_offset = distance(u_resolution / 2.0 / u_total_size, st2) * 0.01 + (random(st2) * 0.15);
@@ -43,7 +39,7 @@ export const CanvasRevealEffect = ({
         />
       </div>
       {showGradient && (
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950 to-[84%]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-[84%]" />
       )}
     </div>
   );
@@ -292,7 +288,7 @@ const ShaderMaterial = ({
 
 const Shader: React.FC<ShaderProps> = ({ source, uniforms, maxFps = 60 }) => {
   return (
-    <Canvas className="absolute inset-0  h-full w-full">
+    <Canvas className="absolute h-full w-full right-[0.5px] bottom-[0.3px]">
       <ShaderMaterial source={source} uniforms={uniforms} maxFps={maxFps} />
     </Canvas>
   );

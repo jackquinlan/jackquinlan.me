@@ -1,7 +1,7 @@
 import type React from "react";
 import type { Metadata } from "next";
 
-import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 import "@/globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`${GeistMono.variable}`}>
+      <body className={GeistSans.className}>
         {children}
       </body>
     </html>
