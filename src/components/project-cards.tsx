@@ -8,53 +8,65 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CanvasRevealEffect } from "@/components/canvas-flickering-grid";
 import { ActivePulse } from "@/components/active-pulse";
+import { Badge } from "@/components/ui/badge";
 
 const PROJECTS: ProjectCardProps[] = [
   {
     title: "Mars",
     summary:
       "A chess engine in Python with AI opponents and multiplayer support.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.",
     icon: <Swords className="text-black fill-black" size={20} />,
     githubLink: "https://www.github.com/jackquinlan/mars",
     productionLink: "https://chess.jackquinlan.me",
     colorList: [
-      [220, 38, 38],
-      [248, 113, 113],
+      [220, 38, 38],   // red-600
+      [248, 113, 113], // red-400
     ],
+    technologies: ["Python", "Django", "Typescript", "Next.js", "Tailwind"],
   },
   {
     title: "Fintrack",
     summary:
       "A chess engine in Python with AI opponents and multiplayer support.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.",
     icon: <WalletCards className="text-black fill-black" size={20} />,
     githubLink: "https://www.github.com/jackquinlan/mars",
     productionLink: "https://chess.jackquinlan.me",
     colorList: [
-      [22, 163, 74],
-      [74, 222, 128],
+      [22, 163, 74],  // green-600
+      [74, 222, 128], // green-400
     ],
+    technologies: ["Go", "Typescript", "Next.js", "Tailwind"],
   },
   {
     title: "Blueprint",
     summary:
       "A Next.js project blueprint with everything you need to build cool stuff.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.",
     icon: <Shapes className="text-black fill-black" size={20} />,
     githubLink: "https://www.github.com/jackquinlan/mars",
     productionLink: "https://chess.jackquinlan.me",
     colorList: [
-      [37, 99, 235],
-      [96, 165, 250],
+      [37, 99, 235],  // blue-400
+      [96, 165, 250], // blue-600
     ],
+    technologies: ["Typescript", "Next.js", "Tailwind", "tRPC", "Prisma"],
   },
 ];
 
 interface ProjectCardProps {
   title: string;
-  summary?: string;
+  summary: string;
+  description: string;
   icon?: React.ReactNode;
   colorList?: number[][];
   githubLink: string;
   productionLink?: string;
+  technologies?: string[];
 }
 
 export function ProjectCards() {
@@ -70,10 +82,12 @@ export function ProjectCards() {
 function ProjectCard({
   title,
   summary,
+  description,
   icon,
   githubLink,
   productionLink,
   colorList,
+  technologies,
 }: ProjectCardProps) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [isClicked, setIsClicked] = React.useState(false);
@@ -147,8 +161,8 @@ function ProjectCard({
         <motion.div
           initial={{ height: 0, opacity: 0, marginTop: 0 }}
           animate={{
-            height:    isClicked ? contentHeight : 0,
-            opacity:   isClicked ? 1 : 0,
+            height: isClicked ? contentHeight : 0,
+            opacity: isClicked ? 1 : 0,
             marginTop: isClicked ? 16 : 0,
           }}
           transition={{
@@ -161,8 +175,14 @@ function ProjectCard({
             marginTop: { duration: 0.3, ease: [0.33, 1, 0.68, 1] },
           }}
         >
-          <div ref={contentRef} className="border-t pt-4">
-            Expanded Content
+          <div ref={contentRef} className="border-t pt-3">
+            <h4 className="text-lg">Details</h4>
+            <p className="text-sm text-[#55585C] mb-4">{description}</p>
+            <div className="flex flex-wrap gap-2">
+              {technologies && technologies.map((tech) => (
+                <Badge key={tech} variant="secondary" className="font-normal">{tech}</Badge>
+              ))}
+            </div>
           </div>
         </motion.div>
       </CardContent>
