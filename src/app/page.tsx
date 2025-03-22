@@ -2,7 +2,7 @@ import * as React from "react";
 import { SocialButton } from "@/components/social-button";
 import { ProjectCards } from "@/components/project-cards";
 
-export const SOCIAL_LINKS = [
+const SOCIAL_LINKS = [
   {
     href: "http://www.github.com/jackquinlan",
     text: "GitHub",
@@ -18,7 +18,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#F9F8F6]">
       <div className="container mx-auto px-4 py-8 max-w-3xl">
         <div className="flex flex-col gap-1 mb-4">
-          <h1 className="text-xl font-normal leading-tight">hi, i'm jack.</h1>
+          <h1 className="text-xl font-normal leading-tight">hi, i&apos;m jack.</h1>
           <h2 className="text-xl font-normal leading-tight text-[#55585C]">
             i like to write code and build things.
           </h2>
