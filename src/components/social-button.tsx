@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 interface SocialButtonProps {
   href: string;
   text: string;
+  logo: React.ReactNode;
 }
 
-export function SocialButton({ href, text }: SocialButtonProps) {
+export function SocialButton({ href, text, logo }: SocialButtonProps) {
   return (
     <Button
       variant="outline"
@@ -16,7 +17,7 @@ export function SocialButton({ href, text }: SocialButtonProps) {
       asChild
     >
       <Link href={href} target="_blank" rel="noopener noreferrer">
-        {text}
+        {logo ?? text}
       </Link>
     </Button>
   );

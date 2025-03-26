@@ -204,6 +204,7 @@ const ShaderMaterial = ({
     timeLocation.value = timestamp;
   });
 
+  const pixelRatio = useThree().gl.getPixelRatio();
   const getUniforms = React.useCallback(() => {
     const preparedUniforms: { [key: string]: THREE.Uniform } = {}; 
 
@@ -237,32 +238,36 @@ const ShaderMaterial = ({
           break;
       }
     }
-
     preparedUniforms["u_time"] = new THREE.Uniform(0);
     preparedUniforms["u_resolution"] = new THREE.Uniform(
-      new THREE.Vector2(size.width * 2, size.height * 2)
-    ); // Initialize u_resolution
+      new THREE.Vector2(size.width * pixelRatio, size.height * pixelRatio)
+    ); 
     return preparedUniforms;
-  }, [uniforms, size.width, size.height]);
+  }, [uniforms, size.width, size.height, pixelRatio]);
 
   // Shader material
   const material = useMemo(() => {
     const materialObject = new THREE.ShaderMaterial({
       vertexShader: `
-      precision mediump float;
-      in vec2 coordinates;
-      uniform vec2 u_resolution;
-      out vec2 fragCoord;
-      void main(){
-        float x = position.x;
-        float y = position.y;
-        gl_Position = vec4(x, y, 0.0, 1.0);
-        fragCoord = (position.xy + vec2(1.0)) * 0.5 * u_resolution;
-        fragCoord.y = u_resolution.y - fragCoord.y;
-      }
+        precision mediump float;
+        in vec2 coordinates;
+        uniform vec2 u_resolution;
+        out vec2 fragCoord;
+        void main() {
+          float x = position.x;
+          float y = position.y;
+          gl_Position = vec4(x, y, 0.0, 1.0);
+          fragCoord = (position.xy + vec2(1.0)) * 0.5 * u_resolution;
+          fragCoord.y = u_resolution.y - fragCoord.y;
+        }
       `,
       fragmentShader: source,
-      uniforms: getUniforms(),
+      uniforms: {
+        ...getUniforms(),
+        u_resolution: new THREE.Uniform(
+          new THREE.Vector2(size.width * pixelRatio, size.height * pixelRatio)
+        ),
+    },
       glslVersion: THREE.GLSL3,
       blending: THREE.CustomBlending,
       blendSrc: THREE.SrcAlphaFactor,
@@ -270,7 +275,7 @@ const ShaderMaterial = ({
     });
 
     return materialObject;
-  }, [source, getUniforms]);
+  }, [source, getUniforms, pixelRatio, size.width, size.height]);
 
   return (
     <mesh ref={ref}>

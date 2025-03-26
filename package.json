@@ -10,6 +10,7 @@
     "format": "prettier --write \"**/*.{ts,js,tsx,md}\""
   },
   "dependencies": {
+    "@radix-ui/react-aspect-ratio": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.8",
     "@react-three/fiber": "^9.1.0",
