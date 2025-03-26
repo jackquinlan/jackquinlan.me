@@ -21,7 +21,7 @@ export const CanvasRevealEffect = ({
   showGradient?: boolean;
 }) => {
   return (
-    <div className={cn("relative bg-white w-full h-full", containerClassName)}>
+    <div className={cn("relative bg-card w-full h-full", containerClassName)}>
       <div className="h-full w-full">
         <DotMatrix
           dotSize={dotSize}
@@ -206,31 +206,37 @@ const ShaderMaterial = ({
 
   const pixelRatio = useThree().gl.getPixelRatio();
   const getUniforms = React.useCallback(() => {
-    const preparedUniforms: { [key: string]: THREE.Uniform } = {}; 
+    const preparedUniforms: { [key: string]: THREE.Uniform } = {};
 
     for (const uniformName in uniforms) {
       const uniform = uniforms[uniformName];
 
       switch (uniform.type) {
         case "uniform1f":
-          preparedUniforms[uniformName] = new THREE.Uniform(uniform.value as number);
+          preparedUniforms[uniformName] = new THREE.Uniform(
+            uniform.value as number,
+          );
           break;
         case "uniform3f":
           preparedUniforms[uniformName] = new THREE.Uniform(
-            new THREE.Vector3().fromArray(uniform.value as number[])
+            new THREE.Vector3().fromArray(uniform.value as number[]),
           );
           break;
         case "uniform1fv":
-          preparedUniforms[uniformName] = new THREE.Uniform(uniform.value as number[]);
+          preparedUniforms[uniformName] = new THREE.Uniform(
+            uniform.value as number[],
+          );
           break;
         case "uniform3fv":
           preparedUniforms[uniformName] = new THREE.Uniform(
-            (uniform.value as number[][]).map((v) => new THREE.Vector3().fromArray(v))
+            (uniform.value as number[][]).map((v) =>
+              new THREE.Vector3().fromArray(v),
+            ),
           );
           break;
         case "uniform2f":
           preparedUniforms[uniformName] = new THREE.Uniform(
-            new THREE.Vector2().fromArray(uniform.value as number[])
+            new THREE.Vector2().fromArray(uniform.value as number[]),
           );
           break;
         default:
@@ -240,8 +246,8 @@ const ShaderMaterial = ({
     }
     preparedUniforms["u_time"] = new THREE.Uniform(0);
     preparedUniforms["u_resolution"] = new THREE.Uniform(
-      new THREE.Vector2(size.width * pixelRatio, size.height * pixelRatio)
-    ); 
+      new THREE.Vector2(size.width * pixelRatio, size.height * pixelRatio),
+    );
     return preparedUniforms;
   }, [uniforms, size.width, size.height, pixelRatio]);
 
@@ -265,9 +271,9 @@ const ShaderMaterial = ({
       uniforms: {
         ...getUniforms(),
         u_resolution: new THREE.Uniform(
-          new THREE.Vector2(size.width * pixelRatio, size.height * pixelRatio)
+          new THREE.Vector2(size.width * pixelRatio, size.height * pixelRatio),
         ),
-    },
+      },
       glslVersion: THREE.GLSL3,
       blending: THREE.CustomBlending,
       blendSrc: THREE.SrcAlphaFactor,

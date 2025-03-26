@@ -17,11 +17,16 @@ const PROJECTS: ProjectCardProps[] = [
       "A chess engine in Python with AI opponents and multiplayer support.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.",
-    icon: <Swords className="text-black fill-black" size={20} />,
+    icon: (
+      <Swords
+        className="text-black fill-black dark:text-white dark:fill-white"
+        size={20}
+      />
+    ),
     githubLink: "https://www.github.com/jackquinlan/mars",
     productionLink: "https://chess.jackquinlan.me",
     colorList: [
-      [220, 38, 38],   // red-600
+      [220, 38, 38], // red-600
       [248, 113, 113], // red-400
     ],
     technologies: ["Python", "Django", "Typescript", "Next.js", "Tailwind"],
@@ -32,11 +37,16 @@ const PROJECTS: ProjectCardProps[] = [
       "A personal finance tracker with budgeting, spending analysis, and more.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.",
-    icon: <WalletCards className="text-black fill-black" size={20} />,
+    icon: (
+      <WalletCards
+        className="text-black fill-black dark:text-white dark:fill-white"
+        size={20}
+      />
+    ),
     githubLink: "https://www.github.com/jackquinlan/mars",
     productionLink: "https://chess.jackquinlan.me",
     colorList: [
-      [22, 163, 74],  // green-600
+      [22, 163, 74], // green-600
       [74, 222, 128], // green-400
     ],
     technologies: ["Go", "Typescript", "Next.js", "Tailwind"],
@@ -47,11 +57,16 @@ const PROJECTS: ProjectCardProps[] = [
       "A Next.js project blueprint with everything you need to build cool stuff.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl aliquet nunc, vitae aliquam nisl nunc vitae nisl.",
-    icon: <Shapes className="text-black fill-black" size={20} />,
+    icon: (
+      <Shapes
+        className="text-black fill-black dark:text-white dark:fill-white"
+        size={20}
+      />
+    ),
     githubLink: "https://www.github.com/jackquinlan/mars",
     productionLink: "https://chess.jackquinlan.me",
     colorList: [
-      [37, 99, 235],  // blue-400
+      [37, 99, 235], // blue-400
       [96, 165, 250], // blue-600
     ],
     technologies: ["Typescript", "Next.js", "Tailwind", "tRPC", "Prisma"],
@@ -128,11 +143,11 @@ function ProjectCard({
                 <CanvasRevealEffect
                   animationSpeed={4}
                   colors={colorList}
-                  containerClassName="bg-white"
+                  containerClassName="bg-card dark:bg-secondary"
                 />
               </div>
             )}
-            <div className="relative z-10 flex items-center justify-center w-8 h-8 bg-white rounded-full border">
+            <div className="relative z-10 flex items-center justify-center w-8 h-8 bg-card rounded-full border">
               {icon}
             </div>
           </Card>
@@ -155,7 +170,7 @@ function ProjectCard({
                 )}
               </div>
             </div>
-            <p className="text-sm text-[#55585C]">{summary}</p>
+            <p className="text-sm text-secondary-text">{summary}</p>
           </div>
         </div>
         <motion.div
@@ -177,11 +192,14 @@ function ProjectCard({
         >
           <div ref={contentRef} className="border-t pt-3">
             <h4 className="text-lg">Details</h4>
-            <p className="text-sm text-[#55585C] mb-4">{description}</p>
+            <p className="text-sm text-secondary-text mb-4">{description}</p>
             <div className="flex flex-wrap gap-2">
-              {technologies && technologies.map((tech) => (
-                <Badge key={tech} variant="secondary" className="font-normal">{tech}</Badge>
-              ))}
+              {technologies &&
+                technologies.map((tech) => (
+                  <Badge key={tech} variant="secondary" className="font-normal">
+                    {tech}
+                  </Badge>
+                ))}
             </div>
           </div>
         </motion.div>

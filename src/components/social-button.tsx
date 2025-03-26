@@ -12,7 +12,7 @@ export function SocialButton({ href, text, logo }: SocialButtonProps) {
   return (
     <Button
       variant="outline"
-      className="font-geist-mono h-8 px-3 text-xs"
+      className="h-8 px-3 text-xs"
       size="sm"
       asChild
     >
