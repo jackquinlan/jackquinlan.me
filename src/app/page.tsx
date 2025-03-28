@@ -62,7 +62,7 @@ export default function Home() {
         <h2 className="text-xl font-normal mb-4">projects</h2>
         <ProjectCards />
       </div>
-      <div className="absolute top-4 right-2">
+      <div className="absolute top-4 right-4">
         <ModeToggle />
       </div>
     </main>
